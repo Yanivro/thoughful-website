@@ -92,6 +92,30 @@ nav {
   text-decoration: none;
 }
 
+.nav-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+@media (max-width: 640px) {
+  .nav-tagline { display: none; }
+}
+.hero-mobile-tag {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--muted);
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
 .nav-btn {
   background: var(--btn-bg);
   border: none;
@@ -143,6 +167,14 @@ nav {
   width: 20px; height: 1px;
   background: var(--accent);
   display: block;
+}
+.hero-pill::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.8;
 }
 
 h1 {
@@ -938,7 +970,7 @@ input[type=email]:focus {
 <section id="hero">
   <div class="hero-inner">
     <div class="reveal">
-      <div class="hero-eyebrow">early access</div>
+        <div class="hero-mobile-tag"><span style="color:#6B58A8;">&#8212;&nbsp;&nbsp;duolingo for <em>emotional fluency</em></span></div>
       <h1>
         Learn to<br>
         communicate.<br>

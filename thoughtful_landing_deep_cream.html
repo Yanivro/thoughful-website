@@ -367,9 +367,8 @@ input[type=email]:focus {
   max-width:460px;line-height:1.7;
 }
 .who-card {
-  background:#FAF7F3;border:none;
+  background:var(--glass);border:0.5px solid var(--glass-border);
   border-radius:16px;padding:20px;margin-bottom:10px;
-  box-shadow:5px 5px 12px #c4bdb2,-5px -5px 12px #fff;
   transition:box-shadow 0.2s;
 }
 .who-card:hover { box-shadow:4px 4px 10px #d8d4cf,-4px -4px 10px #fff; }
@@ -719,20 +718,19 @@ input[type=email]:focus {
 }
 
 .feat-card {
-  background: #FAF7F3;
-  border: none;
+  background: var(--glass);
+  border: 0.5px solid var(--glass-border);
   border-radius: 24px;
   padding: 32px;
   overflow: hidden;
   position: relative;
-  box-shadow: 6px 6px 14px #c4bdb2, -6px -6px 14px #fff;
   transition: box-shadow 0.25s;
 }
 .feat-card:hover {
-  box-shadow: 8px 8px 18px #bcb5aa, -8px -8px 18px #fff;
+  box-shadow: 6px 6px 16px #c8c0b4, -6px -6px 16px #fff;
 }
 .feat-card.wide { grid-column: 1 / -1; }
-.feat-card.accent { background: #FAF7F3; }
+.feat-card.accent { background: linear-gradient(135deg, rgba(184,165,212,0.12), rgba(184,165,212,0.04)); }
 
 .feat-eyebrow {
   font-size: 10px; letter-spacing: 0.16em;
@@ -886,15 +884,13 @@ input[type=email]:focus {
   gap: 8px;
 }
 .path-row {
-  background: rgba(237,229,218,0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: #F0ECE7;
   border-radius: 14px;
   padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 4px 4px 10px #c4bdb2, -4px -4px 10px #f5f0eb;
+  box-shadow: 3px 3px 7px #d8d4cf, -3px -3px 7px #fff;
   opacity: 0;
   transform: translateX(-10px);
   transition: opacity 0.5s, transform 0.5s;
@@ -1150,7 +1146,7 @@ input[type=email]:focus {
                 </div>
                 <div class="lab-ctx-row" id="labCtxRow">
                   <div class="lab-chip" id="lc-partner">partner</div>
-                  <div class="lab-chip" id="lc-friend">casual friend</div>
+                  <div class="lab-chip" id="lc-friend">close friend</div>
                   <div class="lab-chip" id="lc-family">family</div>
                   <div class="lab-chip" id="lc-work">colleague</div>
                 </div>
@@ -1533,7 +1529,7 @@ function dGoTo(n, btn) {
     if (cursorEl) cursorEl.style.display = 'none';
 
     // Select context
-    var chip = document.getElementById('lc-friend');
+    var chip = document.getElementById('lc-partner');
     if (chip) chip.classList.add('on');
 
     await wait(800);

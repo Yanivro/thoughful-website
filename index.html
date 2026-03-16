@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thoughtful — Learn to communicate. Learn who you are.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root {
+  --bg: #FAF5F0;
+  --bg2: #F5EEE7;
+  --text: #3a3530;
+  --muted: #8a8580;
+  --hint: rgba(58,53,48,0.25);
+  --accent: #B8A5D4;
+  --accent-deep: #7F6DB8;
+  --accent-text: #6B5A96;
+  --btn-bg: #F0ECE7;
+  --btn-shadow: 3px 3px 6px #d8d4cf, -3px -3px 6px #fff;
+  --btn-shadow-in: inset 2px 2px 4px #d8d4cf, inset -2px -2px 4px #fff;
+  --blob-purple: #E1D4F0;
+  --blob-green: #D4EDE4;
+  --blob-peach: #FAD8C8;
+  --blob-yellow: #FDE8B8;
+  --glass: rgba(255,255,255,0.6);
+  --glass-border: rgba(0,0,0,0.05);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ── BLOBS ── */
+.blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.blob {
+  position: absolute;
+  border-radius: 50% 40% 60% 50%;
+  filter: blur(60px);
+  animation: blobdrift 18s ease-in-out infinite;
+}
+.bl-1 { width: 500px; height: 500px; background: var(--blob-purple); opacity: 0.45; top: -150px; left: -100px; animation-delay: 0s; }
+.bl-2 { width: 380px; height: 380px; background: var(--blob-green); opacity: 0.4; top: 40%; right: -80px; animation-delay: -6s; }
+.bl-3 { width: 320px; height: 320px; background: var(--blob-peach); opacity: 0.35; bottom: 5%; left: 15%; animation-delay: -12s; }
+.bl-4 { width: 260px; height: 260px; background: var(--blob-yellow); opacity: 0.3; top: 20%; left: 55%; animation-delay: -9s; }
+
+@keyframes blobdrift {
+  0%,100% { transform: translate(0,0) scale(1); border-radius: 50% 40% 60% 50%; }
+  33% { transform: translate(20px,-30px) scale(1.04); border-radius: 45% 55% 50% 60%; }
+  66% { transform: translate(-15px,15px) scale(0.97); border-radius: 55% 45% 40% 60%; }
+}
+
+section { position: relative; z-index: 1; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(250,245,240,0.75);
+  backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid rgba(0,0,0,0.06);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-btn {
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 100px;
+  padding: 9px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  transition: box-shadow 0.15s, color 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-btn:hover { color: var(--accent-deep); }
+.nav-btn:active { box-shadow: var(--btn-shadow-in); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 40px 80px;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--accent);
+  display: block;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(42px, 5vw, 66px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+h1 em { font-style: italic; color: var(--accent-deep); }
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+
+.hero-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 440px;
+}
+
+input[type=email] {
+  flex: 1;
+  min-width: 200px;
+  background: var(--glass);
+  border: 0.5px solid rgba(0,0,0,0.08);
+  border-radius: 100px;
+  padding: 13px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.04);
+}
+input[type=email]::placeholder { color: var(--hint); }
+input[type=email]:focus {
+  border-color: rgba(184,165,212,0.5);
+  box-shadow: 0 0 0 3px rgba(184,165,212,0.12), inset 1px 1px 3px rgba(0,0,0,0.04);
+}
+
+.hero-cta {
+  background: var(--accent);
+  border: none;
+  border-radius: 100px;
+  padding: 13px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(184,165,212,0.4);
+}
+.hero-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+.hero-cta:active { transform: translateY(0); opacity: 1; }
+
+.hero-note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--hint);
+}
+
+.success-msg {
+  display: none;
+  font-size: 14px;
+  color: var(--accent-text);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ── PHONE DEMO ── */
+.phone-demo {
+  animation: float 7s ease-in-out infinite;
+  filter: drop-shadow(0 12px 24px rgba(184,165,212,0.2));
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+
+/* ── PHONE DEVICE ── */
+.device {
+  width:100%;max-width:320px;margin:0 auto;min-height:560px;
+  border-radius:32px;overflow:hidden;position:relative;
+  background:var(--bg);border:0.5px solid rgba(0,0,0,0.08);
+  box-shadow:8px 8px 20px #d8d4cf,-8px -8px 20px #fff,0 32px 60px rgba(0,0,0,0.08);
+}
+.d-blob {
+  position:absolute;border-radius:50% 40% 60% 50%;pointer-events:none;
+}
+.db1{top:-30px;left:-30px;width:150px;height:150px;background:var(--blob-purple);opacity:0.4;}
+.db2{bottom:60px;right:-40px;width:130px;height:130px;background:var(--blob-green);opacity:0.35;}
+.db3{bottom:-20px;left:20px;width:90px;height:90px;background:var(--blob-peach);opacity:0.3;}
+.db4{top:80px;right:-20px;width:70px;height:70px;background:var(--blob-yellow);opacity:0.3;}
+.d-inner {
+  position:relative;z-index:2;padding:20px;
+  min-height:560px;display:flex;flex-direction:column;
+}
+.d-screen { display:none;flex-direction:column;min-height:520px; }
+.d-screen.active { display:flex;animation:screenIn 0.4s ease both; }
+@keyframes screenIn { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+.d-top {
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;
+}
+.d-label { font-size:11px;color:var(--muted);letter-spacing:0.04em; }
+.d-dots { display:flex;gap:4px; }
+.d-dot { width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,0.1); }
+.d-dot.on { background:var(--accent); }
+.d-prog {
+  height:4px;border-radius:2px;background:rgba(0,0,0,0.06);
+  margin-bottom:18px;overflow:hidden;
+}
+.d-prog-fill { height:100%;border-radius:2px;background:var(--accent);transition:width 0.6s ease; }
+.glass-card {
+  background:var(--glass);border-radius:16px;padding:14px 16px;
+  border:0.5px solid var(--glass-border);margin-bottom:14px;
+}
+.chat-col { display:flex;flex-direction:column;gap:4px; }
+.chat-sender { font-size:10px;color:var(--muted);margin-bottom:2px;margin-left:4px; }
+.chat-sender-r { text-align:right;margin-right:4px; }
+.cb-them {
+  display:inline-block;background:rgba(255,255,255,0.85);
+  border:0.5px solid rgba(0,0,0,0.06);border-radius:12px 12px 12px 3px;
+  padding:8px 12px;font-size:13px;line-height:1.5;color:var(--text);max-width:85%;
+}
+.cb-you {
+  display:block;background:var(--accent);border-radius:12px 12px 3px 12px;
+  padding:8px 12px;font-size:13px;line-height:1.5;color:#fff;
+  max-width:85%;margin-left:auto;
+}
+.d-prompt { font-size:14px;color:var(--text);margin-bottom:14px;line-height:1.5; }
+.d-opts { display:flex;flex-direction:column;gap:8px; }
+.d-opt {
+  background:var(--btn-bg);border-radius:12px;padding:11px 14px;
+  font-size:13px;color:var(--text);line-height:1.4;
+  box-shadow:var(--btn-shadow);border:none;text-align:left;
+  cursor:pointer;transition:all 0.15s;
+  font-family:'DM Sans',sans-serif;font-weight:300;
+}
+.d-opt:active,.d-opt.pressed { box-shadow:var(--btn-shadow-in);color:var(--accent-deep); }
+.d-spacer { flex:1; }
+.xp-card {
+  background:rgba(255,255,255,0.65);border-radius:16px;padding:18px;
+  border:0.5px solid var(--glass-border);text-align:center;
+}
+.xp-num { font-size:32px;font-weight:500;color:var(--accent);margin-bottom:3px; }
+.xp-sub { font-size:11px;color:var(--muted);margin-bottom:14px; }
+.insight-label { font-size:10px;color:var(--muted);margin-bottom:7px; }
+.insight-pill {
+  display:inline-block;background:#EDE7F4;border-radius:20px;
+  padding:7px 16px;font-size:12px;color:var(--accent-text);
+}
+.peek-svg { display:block;margin:0 auto 14px; }
+.d-name-text { font-size:14px;color:var(--text);line-height:1.7;text-align:center;font-style:italic; }
+.d-name-label { font-size:11px;color:var(--accent);text-align:center;margin-top:10px;letter-spacing:0.04em; }
+.scout-wrap { position:absolute;bottom:14px;right:16px;z-index:3;display:flex;align-items:flex-end;gap:5px; }
+.fade-in { animation:fadeUp 0.45s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
+
+
+
+/* ── SECTION LAYOUT ── */
+#who    { padding: 100px 40px; }
+#characters { padding: 60px 40px 100px; }
+#how    { padding: 80px 40px 100px; }
+#cta    { padding: 80px 40px 120px; text-align: center; }
+
+.who-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.who-left h2 { max-width: 480px; }
+
+.how-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.chars-inner { max-width: 1100px; margin: 0 auto; }
+.chars-header { margin-bottom: 48px; }
+
+/* ── SECTION LABELS ── */
+.section-eye {
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-eye::before { content:'';width:16px;height:1px;background:var(--muted);display:block; }
+
+/* ── WHO SECTION ── */
+.chars-inner { max-width:1100px;margin:0 auto; }
+.chars-header { margin-bottom:48px; }
+.chars-sub {
+  font-size:14px;color:var(--muted);margin-top:12px;
+  max-width:460px;line-height:1.7;
+}
+.who-card {
+  background:var(--glass);border:0.5px solid var(--glass-border);
+  border-radius:16px;padding:20px;margin-bottom:10px;
+  transition:box-shadow 0.2s;
+}
+.who-card:hover { box-shadow:4px 4px 10px #d8d4cf,-4px -4px 10px #fff; }
+.who-card-title { font-size:15px;font-weight:400;color:var(--text);margin-bottom:5px; }
+.who-card-body { font-size:14px;color:var(--muted);line-height:1.65; }
+
+/* ── CHARACTER GRID ── */
+.chars-grid {
+  display:grid;grid-template-columns:repeat(6,1fr);gap:12px;
+}
+.char-card {
+  background:var(--glass);border:0.5px solid var(--glass-border);
+  border-radius:20px;padding:22px 14px 18px;text-align:center;
+  transition:all 0.25s;cursor:default;
+}
+.char-card:hover { box-shadow:5px 5px 12px #d8d4cf,-5px -5px 12px #fff;transform:translateY(-3px); }
+.char-icon { width:52px;height:52px;margin:0 auto 12px;display:block; }
+.char-name { font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px; }
+.char-dim {
+  font-size:11px;color:var(--muted);
+  letter-spacing:0.06em;text-transform:uppercase;
+}
+
+/* ── HOW SECTION ── */
+.how-steps { margin-top:32px; }
+.how-step {
+  display:flex;gap:16px;padding:18px 0;
+  border-bottom:0.5px solid rgba(0,0,0,0.06);
+}
+.how-step:last-child { border-bottom:none; }
+.step-num {
+  width:28px;height:28px;border-radius:50%;
+  background:var(--btn-bg);
+  box-shadow:2px 2px 5px #d8d4cf,-2px -2px 5px #fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--accent-text);flex-shrink:0;margin-top:2px;
+}
+.step-title { font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px; }
+.step-body { font-size:13px;color:var(--muted);line-height:1.6; }
+
+/* ── TWO PHONES ── */
+.two-phones { display:flex;gap:14px;justify-content:center;align-items:flex-end; }
+.mini-phone {
+  width:150px;background:var(--bg);border-radius:24px;
+  border:0.5px solid rgba(0,0,0,0.07);
+  box-shadow:5px 5px 14px #d8d4cf,-5px -5px 14px #fff;
+  overflow:hidden;padding:16px 12px 14px;position:relative;
+}
+.mp1 { transform:rotate(-3deg) translateY(10px);opacity:0.85; }
+.mp2 { transform:rotate(3deg); }
+.mp-blobs { position:absolute;inset:0;border-radius:24px;overflow:hidden;pointer-events:none; }
+.mpb1 { position:absolute;top:-20px;left:-20px;width:80px;height:80px;background:var(--blob-purple);opacity:0.35;border-radius:50%;filter:blur(20px); }
+.mpb2 { position:absolute;bottom:10px;right:-10px;width:60px;height:60px;background:var(--blob-green);opacity:0.3;border-radius:50%;filter:blur(16px); }
+.mp-prog { display:flex;gap:2px;margin-bottom:8px; }
+.mp-pf { height:2px;flex:1;border-radius:1px;background:var(--accent);opacity:0.6; }
+.mp-pe { height:2px;flex:1;border-radius:1px;background:rgba(0,0,0,0.06); }
+.mp-label { font-size:8px;color:var(--muted);text-align:right;margin-bottom:8px;letter-spacing:0.05em; }
+.mp-q { font-size:10px;font-weight:500;color:var(--text);text-align:center;line-height:1.4;margin-bottom:4px; }
+.mp-them { display:inline-block;background:rgba(255,255,255,0.8);border:0.5px solid rgba(0,0,0,0.06);border-radius:9px 9px 9px 2px;padding:6px 8px;font-size:9px;color:var(--text);max-width:88%;line-height:1.4;margin-bottom:4px; }
+.mp-you { display:block;background:var(--accent);border-radius:9px 9px 2px 9px;padding:6px 8px;font-size:9px;color:#fff;max-width:88%;margin-left:auto;line-height:1.4; }
+.mp-name { font-size:7px;color:var(--muted);margin-bottom:1px; }
+.mp-name-r { text-align:right; }
+.mp-opts { display:flex;flex-direction:column;gap:4px;margin-top:8px; }
+.mp-opt { background:var(--btn-bg);border-radius:8px;padding:6px 8px;font-size:9px;color:var(--text);box-shadow:1px 1px 3px #d8d4cf,-1px -1px 3px #fff;border:none;text-align:left;line-height:1.3; }
+.mp-opt.hi { background:#EDE7F4;color:var(--accent-text);box-shadow:inset 1px 1px 2px #d8d4cf,inset -1px -1px 2px #fff; }
+.mp-xp-card { background:rgba(255,255,255,0.65);border-radius:10px;padding:10px;border:0.5px solid var(--glass-border);text-align:center; }
+.mp-xp-num { font-size:20px;font-weight:500;color:var(--accent);margin-bottom:2px; }
+.mp-xp-sub { font-size:8px;color:var(--muted);margin-bottom:8px; }
+.mp-insight-pill { display:inline-block;background:#EDE7F4;border-radius:12px;padding:4px 10px;font-size:8px;color:var(--accent-text); }
+
+/* ── CTA ── */
+.cta-card {
+  max-width:560px;margin:0 auto;background:var(--glass);
+  border-radius:32px;padding:60px 48px;
+  border:0.5px solid var(--glass-border);
+  box-shadow:8px 8px 20px #d8d4cf,-8px -8px 20px #fff;
+}
+.cta-card h2 { font-size:clamp(34px,4vw,52px);margin-bottom:16px; }
+.cta-sub { font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:36px; }
+.cta-form { display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px; }
+.cta-note { font-size:12px;color:var(--hint); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  #hero { padding: 100px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .phone-demo { order: -1; max-width: 300px; margin: 0 auto; }
+  .who-inner { grid-template-columns: 1fr; gap: 36px; }
+  .chars-grid { grid-template-columns: repeat(3,1fr); gap: 8px; }
+  .how-inner { grid-template-columns: 1fr; gap: 40px; }
+  .two-phones { order: -1; }
+  .cta-card { padding: 40px 24px; }
+  #who, #characters, #how, #cta { padding: 60px 24px; }
+  footer { padding: 20px 24px; }
+}
+
+@media (max-width: 480px) {
+  nav { padding: 14px 20px; }
+  .nav-logo { font-size: 18px; }
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  .hero-sub { font-size: 15px; }
+  .hero-form { flex-direction: column; }
+  input[type=email] { width: 100%; min-width: unset; }
+  .hero-cta { width: 100%; text-align: center; }
+  .chars-grid { grid-template-columns: repeat(2,1fr); }
+  .char-card { padding: 16px 10px 14px; }
+  .char-icon { width: 40px; height: 40px; }
+  .cta-form { flex-direction: column; align-items: stretch; }
+  .cta-form input[type=email] { width: 100%; }
+  .cta-form .hero-cta { width: 100%; text-align: center; }
+  .device { max-width: 280px; }
+  .two-phones { gap: 8px; }
+  .mini-phone { width: 130px; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* ── WAITLIST MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(58,53,48,0.35);
+  backdrop-filter: blur(6px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal {
+  background: var(--bg);
+  border-radius: 28px;
+  padding: 40px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 12px 12px 30px #d8d4cf, -12px -12px 30px #fff;
+  transform: translateY(16px);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-overlay.open .modal {
+  transform: translateY(0);
+}
+.modal-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.modal-title em { font-style: italic; color: var(--accent-deep); }
+.modal-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+.modal-divider {
+  height: 0.5px;
+  background: rgba(0,0,0,0.07);
+  margin: 0 -40px 24px;
+}
+.field-group {
+  margin-bottom: 16px;
+}
+.field-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+  display: block;
+}
+.field-input {
+  width: 100%;
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text);
+  box-shadow: inset 2px 2px 5px #d8d4cf, inset -2px -2px 5px #fff;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.field-input:focus {
+  box-shadow: inset 2px 2px 5px #d0ccc7, inset -2px -2px 5px #fff, 0 0 0 2px rgba(184,165,212,0.25);
+}
+.field-input::placeholder { color: var(--hint); }
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill-opt {
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 100px;
+  padding: 9px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  cursor: pointer;
+  box-shadow: 3px 3px 6px #d8d4cf, -3px -3px 6px #fff;
+  transition: all 0.15s;
+}
+.pill-opt:hover { color: var(--text); }
+.pill-opt.selected {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
+}
+.alpha-toggle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--glass);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.alpha-toggle:hover { box-shadow: 3px 3px 8px #d8d4cf, -3px -3px 8px #fff; }
+.alpha-toggle-text { flex: 1; }
+.alpha-toggle-title { font-size: 14px; font-weight: 400; color: var(--text); margin-bottom: 2px; }
+.alpha-toggle-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.toggle-switch {
+  width: 44px;
+  height: 26px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 13px;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.25s;
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
+}
+.toggle-switch.on { background: var(--accent); }
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.toggle-switch.on .toggle-knob { transform: translateX(18px); }
+.modal-submit {
+  width: 100%;
+  background: var(--accent);
+  border: none;
+  border-radius: 14px;
+  padding: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 24px;
+  box-shadow: 0 4px 16px rgba(184,165,212,0.4);
+  transition: opacity 0.2s, transform 0.15s;
+}
+.modal-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+.modal-submit:disabled { opacity: 0.5; cursor: default; transform: none; }
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #d8d4cf, -2px -2px 5px #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.modal-close:hover { color: var(--text); }
+.modal-success {
+  text-align: center;
+  padding: 20px 0;
+  display: none;
+}
+.modal-success-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+.modal-success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.modal-success-sub { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.modal-body.hidden { display: none; }
+@media (max-width: 480px) {
+  .modal { padding: 28px 24px; border-radius: 24px; }
+  .modal-divider { margin: 0 -24px 20px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="blobs">
+  <div class="blob bl-1"></div>
+  <div class="blob bl-2"></div>
+  <div class="blob bl-3"></div>
+  <div class="blob bl-4"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">thoughtful</a>
+  <a href="#cta" class="nav-btn">join the waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="reveal">
+      <div class="hero-eyebrow">early access</div>
+      <h1>
+        Learn to<br>
+        communicate.<br>
+        <em>Learn who you are.</em>
+      </h1>
+      <p class="hero-sub">
+        Most people spend years trying to communicate better. Thoughtful shows you something different — that how you communicate is a mirror. And what it reflects back can change everything.
+      </p>
+      <div class="hero-form">
+        <input type="email" id="hero-email" placeholder="your email">
+        <button class="hero-cta" onclick="openWaitlist()">get early access</button>
+      </div>
+      <p class="hero-note">No spam. First to know when we open.</p>
+    </div>
+    <!-- LIVE LESSON DEMO -->
+    <div class="phone-demo reveal" style="transition-delay:0.15s">
+      <div class="device">
+        <div class="d-blob db1"></div>
+        <div class="d-blob db2"></div>
+        <div class="d-blob db3"></div>
+        <div class="d-blob db4"></div>
+
+        <!-- Screen 1 -->
+        <div class="d-inner d-screen active" data-s="1">
+          <div class="d-top">
+            <span class="d-label">lesson 1 of 3</span>
+            <div class="d-dots">
+              <div class="d-dot on"></div><div class="d-dot"></div><div class="d-dot"></div>
+            </div>
+          </div>
+          <div class="d-prog"><div class="d-prog-fill" style="width:8%"></div></div>
+          <div class="glass-card">
+            <div class="chat-col">
+              <div class="chat-sender">them</div>
+              <div class="cb-them">hey — you seemed a bit off today. everything okay?</div>
+              <div style="height:5px"></div>
+              <div class="chat-sender chat-sender-r">you</div>
+              <div class="cb-you">yeah totally fine! just tired haha</div>
+            </div>
+          </div>
+          <div class="d-prompt">does this sound familiar?</div>
+          <div class="d-opts">
+            <button class="d-opt" onclick="dGoTo(2,this)">yeah — I do this</button>
+            <button class="d-opt" onclick="dGoTo(2,this)">sometimes, depends on the person</button>
+            <button class="d-opt" onclick="dGoTo(2,this)">I've been on the receiving end</button>
+            <button class="d-opt" onclick="dGoTo(2,this)">not really me</button>
+          </div>
+          <div class="d-spacer"></div>
+        </div>
+
+        <!-- Screen 2 -->
+        <div class="d-inner d-screen" data-s="2">
+          <div class="d-top">
+            <span class="d-label">lesson 1 of 3</span>
+            <div class="d-dots">
+              <div class="d-dot on"></div><div class="d-dot"></div><div class="d-dot"></div>
+            </div>
+          </div>
+          <div class="d-prog"><div class="d-prog-fill" style="width:40%"></div></div>
+          <div class="glass-card">
+            <div class="chat-col">
+              <div class="chat-sender">them</div>
+              <div class="cb-them">hey — you seemed a bit off today. everything okay?</div>
+              <div style="height:5px"></div>
+              <div class="chat-sender chat-sender-r">you</div>
+              <div class="cb-you">yeah totally fine! just tired haha</div>
+            </div>
+          </div>
+          <div class="d-prompt">why does "I'm fine" come out?</div>
+          <div class="d-opts">
+            <button class="d-opt" onclick="dGoTo(3,this)">it's easier</button>
+            <button class="d-opt" onclick="dGoTo(3,this)">don't want to burden them</button>
+            <button class="d-opt" onclick="dGoTo(3,this)">not sure they actually want to know</button>
+            <button class="d-opt" onclick="dGoTo(3,this)">it feels too soon</button>
+          </div>
+          <div class="d-spacer"></div>
+        </div>
+
+        <!-- Screen 3: The name -->
+        <div class="d-inner d-screen" data-s="3">
+          <div class="d-top">
+            <span class="d-label">lesson 1 of 3</span>
+            <div class="d-dots">
+              <div class="d-dot on"></div><div class="d-dot"></div><div class="d-dot"></div>
+            </div>
+          </div>
+          <div class="d-prog"><div class="d-prog-fill" style="width:72%"></div></div>
+          <div class="d-spacer"></div>
+          <svg class="peek-svg" width="64" height="52" viewBox="0 0 60 48">
+            <ellipse cx="30" cy="20" rx="22" ry="18" fill="#C4B5DE" opacity="0.6"/>
+            <ellipse cx="22" cy="14" rx="10" ry="10" fill="#C4B5DE"/>
+            <ellipse cx="38" cy="14" rx="10" ry="10" fill="#C4B5DE"/>
+            <ellipse cx="30" cy="22" rx="16" ry="14" fill="#B8A5D4"/>
+            <ellipse cx="30" cy="10" rx="14" ry="12" fill="#C4B5DE"/>
+            <circle cx="25" cy="18" r="3" fill="white"/><circle cx="25" cy="18.5" r="1.8" fill="#3a3050"/>
+            <circle cx="35" cy="18" r="3" fill="white"/><circle cx="35" cy="18.5" r="1.8" fill="#3a3050"/>
+          </svg>
+          <div class="d-name-text fade-in">this is Peek — the part of you that decides when it's safe to let someone in.</div>
+          <div class="d-name-label fade-in" style="animation-delay:0.3s">vulnerability</div>
+          <div class="d-spacer"></div>
+          <button class="d-opt" style="align-self:center;text-align:center;width:80%;margin-bottom:20px;" onclick="dGoTo(4,this)">continue</button>
+        </div>
+
+        <!-- Screen 4: XP -->
+        <div class="d-inner d-screen" data-s="4">
+          <div class="d-top">
+            <span class="d-label">lesson 1 of 3</span>
+            <div class="d-dots">
+              <div class="d-dot on"></div><div class="d-dot"></div><div class="d-dot"></div>
+            </div>
+          </div>
+          <div class="d-prog"><div class="d-prog-fill" style="width:100%"></div></div>
+          <div class="d-spacer"></div>
+          <div class="xp-card fade-in">
+            <div class="xp-num">+8 xp</div>
+            <div class="xp-sub">lesson complete</div>
+            <div class="insight-label">saved to your journal</div>
+            <div class="insight-pill">"the I'm fine reflex"</div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="glass-card fade-in" style="animation-delay:0.25s;text-align:center;">
+            <div style="font-size:12px;color:var(--muted);margin-bottom:5px">up next</div>
+            <div style="font-size:13px;color:var(--text);line-height:1.5">you asked. they said "I'm fine."</div>
+            <div style="display:inline-block;background:rgba(184,165,212,0.12);border-radius:8px;padding:3px 9px;font-size:10px;color:var(--muted);margin-top:7px">perspective flip</div>
+          </div>
+          <div class="d-spacer"></div>
+          <button class="d-opt" style="align-self:center;text-align:center;width:80%;margin-bottom:20px;" onclick="dGoTo(1,this)">next lesson →</button>
+        </div>
+
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="who">
+  <div class="who-inner">
+    <div class="who-left reveal">
+      <div class="section-eye">who this is for</div>
+      <h2>
+        You've read the books.<br>
+        Done the therapy.<br>
+        <em>The patterns<br>are still there.</em>
+      </h2>
+    </div>
+    <div class="who-cards reveal" style="transition-delay:0.15s">
+      <div class="who-card">
+        <div class="who-card-title">You know something is off. You just can't see it.</div>
+        <div class="who-card-body">Not in the abstract — you've read the frameworks. In the moment, with this specific person, in this specific conversation. That's where the pattern lives.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-card-title">Advice doesn't change patterns. Seeing them does.</div>
+        <div class="who-card-body">Thoughtful puts you inside real conversations and holds up the mirror. Not to judge what you see — to help you recognise it. Recognition is where change starts.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-card-title">You're ready to look.</div>
+        <div class="who-card-body">Not everyone wants to see what the mirror shows. But if you're here, you probably already know it's time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARACTERS -->
+<section id="characters">
+  <div class="chars-inner">
+    <div class="chars-header reveal">
+      <div class="section-eye">your communication map</div>
+      <h2>Six dimensions<br><em>of how you connect.</em></h2>
+      <p class="chars-sub">Everyone has all six — Dash, Peek, Flare, Still, Scout, Swell. Some shine brighter. Some are quieter. A 12-question quiz shows you your own map.</p>
+    </div>
+    <div class="chars-grid">
+      <!-- Peek -->
+      <div class="char-card reveal" style="transition-delay:0.05s">
+        <svg class="char-icon" viewBox="0 0 52 52">
+          <ellipse cx="26" cy="22" rx="18" ry="15" fill="#C4B5DE" opacity="0.5"/>
+          <ellipse cx="19" cy="15" rx="9" ry="9" fill="#C4B5DE"/>
+          <ellipse cx="33" cy="15" rx="9" ry="9" fill="#C4B5DE"/>
+          <ellipse cx="26" cy="23" rx="13" ry="12" fill="#B8A5D4"/>
+          <ellipse cx="26" cy="12" rx="12" ry="10" fill="#C4B5DE"/>
+          <circle cx="22" cy="19" r="2.5" fill="white"/><circle cx="22" cy="19.4" r="1.4" fill="#3a3050"/>
+          <circle cx="30" cy="19" r="2.5" fill="white"/><circle cx="30" cy="19.4" r="1.4" fill="#3a3050"/>
+        </svg>
+        <div class="char-name">Peek</div>
+        <div class="char-dim">vulnerability</div>
+      </div>
+      <!-- Dash -->
+      <div class="char-card reveal" style="transition-delay:0.1s">
+        <svg class="char-icon" viewBox="0 0 52 52">
+          <circle cx="20" cy="26" r="14" fill="#E8C088" opacity="0.7"/>
+          <ellipse cx="34" cy="26" rx="6" ry="12" fill="#E8B860" opacity="0.8"/>
+          <ellipse cx="40" cy="26" rx="3" ry="7" fill="#E8C840" opacity="0.5"/>
+          <circle cx="20" cy="26" r="6" fill="#D4983A" opacity="0.6"/>
+          <circle cx="18" cy="24" r="1.5" fill="white"/><circle cx="22" cy="24" r="1.5" fill="white"/>
+          <path d="M17 28 Q20 30 23 28" stroke="#3a3050" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="char-name">Dash</div>
+        <div class="char-dim">momentum</div>
+      </div>
+      <!-- Flare -->
+      <div class="char-card reveal" style="transition-delay:0.15s">
+        <svg class="char-icon" viewBox="0 0 52 52">
+          <polygon points="26,6 31,20 46,20 34,29 38,43 26,34 14,43 18,29 6,20 21,20" fill="#F0A0A8" opacity="0.7"/>
+          <polygon points="26,12 29.5,21 39,21 31.5,26.5 34,35.5 26,30 18,35.5 20.5,26.5 13,21 22.5,21" fill="#E87880"/>
+          <circle cx="23" cy="24" r="1.8" fill="white"/><circle cx="29" cy="24" r="1.8" fill="white"/>
+          <path d="M22 28 Q26 31 30 28" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="char-name">Flare</div>
+        <div class="char-dim">expressiveness</div>
+      </div>
+      <!-- Still -->
+      <div class="char-card reveal" style="transition-delay:0.2s">
+        <svg class="char-icon" viewBox="0 0 52 52">
+          <rect x="12" y="14" width="28" height="26" rx="6" fill="#8ABFB8" opacity="0.6"/>
+          <rect x="16" y="18" width="20" height="18" rx="4" fill="#5DBFB0" opacity="0.7"/>
+          <path d="M20 28 Q26 32 32 28" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M20 23 Q23 21 26 23" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M26 23 Q29 21 32 23" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="char-name">Still</div>
+        <div class="char-dim">presence</div>
+      </div>
+      <!-- Scout -->
+      <div class="char-card reveal" style="transition-delay:0.25s">
+        <svg class="char-icon" viewBox="0 0 52 52">
+          <ellipse cx="26" cy="36" rx="5" ry="12" fill="#E8C840" opacity="0.8"/>
+          <circle cx="32" cy="18" r="10" fill="#E8C840"/>
+          <circle cx="32" cy="18" r="7" fill="white"/>
+          <circle cx="32" cy="18" r="4" fill="#5a4a2a"/>
+          <circle cx="34" cy="16" r="1.2" fill="white"/>
+          <rect x="20" y="38" width="5" height="5" rx="2" fill="#C4A030" opacity="0.7"/>
+        </svg>
+        <div class="char-name">Scout</div>
+        <div class="char-dim">curiosity</div>
+      </div>
+      <!-- Swell -->
+      <div class="char-card reveal" style="transition-delay:0.3s">
+        <svg class="char-icon" viewBox="0 0 52 52">
+          <path d="M26 10 Q38 10 40 22 Q42 36 26 42 Q10 36 12 22 Q14 10 26 10Z" fill="#E898B8" opacity="0.65"/>
+          <path d="M26 16 Q34 16 35 24 Q36 33 26 37 Q16 33 17 24 Q18 16 26 16Z" fill="#D46898" opacity="0.7"/>
+          <circle cx="22" cy="25" r="2" fill="white"/><circle cx="30" cy="25" r="2" fill="white"/>
+          <path d="M21 30 Q26 34 31 30" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="char-name">Swell</div>
+        <div class="char-dim">warmth</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-inner">
+    <div class="reveal">
+      <div class="section-eye">how it works</div>
+      <h2>Short lessons.<br><em>Real recognition.</em></h2>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Take the quiz</div>
+            <div class="step-body">12 scenario questions. No right answers. You get a personal constellation — a map of how you naturally connect, and where the mirror has the most to show you.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Follow your path</div>
+            <div class="step-body">Based on your constellation, the app recommends where to look first. Lessons are short, grounded in real scenarios — texts, conversations, moments you've lived.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Meet your mirror</div>
+            <div class="step-body">The app watches how you respond. Over time it reflects back what it notices — specific, warm, and only when you're ready to see it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-phones reveal" style="transition-delay:0.2s">
+      <div class="mini-phone mp1">
+        <div class="mp-blobs"><div class="mpb1"></div><div class="mpb2"></div></div>
+        <div style="position:relative;z-index:1">
+          <div class="mp-prog"><div class="mp-pf"></div><div class="mp-pf"></div><div class="mp-pe"></div><div class="mp-pe"></div></div>
+          <div class="mp-label">PEEK · L1</div>
+          <div class="mp-q">does this sound familiar?</div>
+          <div class="mp-name">them</div>
+          <div class="mp-them">"everything okay? you seemed off"</div>
+          <div class="mp-name mp-name-r" style="margin-top:4px">you</div>
+          <div class="mp-you">"yeah totally fine! just tired haha"</div>
+          <div class="mp-opts">
+            <div class="mp-opt hi">yeah — I do this</div>
+            <div class="mp-opt">sometimes</div>
+            <div class="mp-opt">not really me</div>
+          </div>
+        </div>
+      </div>
+      <div class="mini-phone mp2">
+        <div class="mp-blobs"><div class="mpb1"></div><div class="mpb2"></div></div>
+        <div style="position:relative;z-index:1">
+          <div class="mp-prog"><div class="mp-pf"></div><div class="mp-pf"></div><div class="mp-pf"></div><div class="mp-pf"></div></div>
+          <div class="mp-label">PEEK · L1</div>
+          <div class="mp-xp-card">
+            <div class="mp-xp-num">+8 xp</div>
+            <div class="mp-xp-sub">lesson complete</div>
+            <div class="mp-insight-pill">"the I'm fine reflex"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-card reveal">
+    <h2>Ready to see<br><em>what the mirror shows?</em></h2>
+    <p class="cta-sub">Thoughtful is in early testing. Join the waitlist and be among the first to look — free for early users.</p>
+    <div class="cta-form">
+      <input type="email" id="cta-email" placeholder="your email address">
+      <button class="hero-cta" onclick="openWaitlist()">join the waitlist</button>
+    </div>
+    <p class="cta-note">No spam. No pressure. Unsubscribe any time.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">thoughtful</div>
+  <div class="footer-note">© 2026 Thoughtful. All rights reserved.</div>
+</footer>
+
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+setTimeout(() => {
+  document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+}, 80);
+
+// Demo phone interaction
+function dGoTo(n, btn) {
+  if (btn) {
+    btn.classList.add('pressed');
+    document.querySelectorAll('.d-opt').forEach(b => b.style.pointerEvents = 'none');
+  }
+  setTimeout(() => {
+    document.querySelectorAll('.d-screen').forEach(s => s.classList.remove('active'));
+    const next = document.querySelector('[data-s="' + n + '"]');
+    if (!next) return;
+    next.classList.add('active');
+    setTimeout(() => {
+      document.querySelectorAll('.d-opt').forEach(b => b.style.pointerEvents = '');
+    }, 600);
+    next.querySelectorAll('.fade-in').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = '';
+    });
+  }, 450);
+}
+</script>
+
+  
+</div>
+
+<!-- WAITLIST MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeWaitlist()">&#x2715;</button>
+
+    <div class="modal-body" id="modal-body">
+      <div class="modal-logo">thoughtful</div>
+      <div class="modal-title">Join the<br><em>waitlist.</em></div>
+      <div class="modal-sub">Be first to access the alpha — free for early users. Takes 60 seconds.</div>
+      <div class="modal-divider"></div>
+
+      <div class="field-group">
+        <label class="field-label">your name</label>
+        <input class="field-input" id="wl-name" type="text" placeholder="first name is fine">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">email</label>
+        <input class="field-input" id="wl-email" type="email" placeholder="your@email.com">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">phone</label>
+        <div class="pill-group" id="wl-os">
+          <button class="pill-opt" onclick="selectPill('wl-os', this)">iOS</button>
+          <button class="pill-opt" onclick="selectPill('wl-os', this)">Android</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">age</label>
+        <div class="pill-group" id="wl-age">
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">18–24</button>
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">25–34</button>
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">35–44</button>
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">45+</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">gender</label>
+        <div class="pill-group" id="wl-gender">
+          <button class="pill-opt" onclick="selectPill('wl-gender', this)">Male</button>
+          <button class="pill-opt" onclick="selectPill('wl-gender', this)">Female</button>
+          <button class="pill-opt" onclick="selectPill('wl-gender', this)">Other</button>
+          <button class="pill-opt" onclick="selectPill('wl-gender', this)">Prefer not to say</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" style="margin-bottom:10px">alpha testing</label>
+        <div class="alpha-toggle" onclick="toggleAlpha()" id="alpha-toggle">
+          <div class="alpha-toggle-text">
+            <div class="alpha-toggle-title">I want to be an alpha tester</div>
+            <div class="alpha-toggle-sub">You'll get early access and help shape the app</div>
+          </div>
+          <div class="toggle-switch" id="alpha-switch">
+            <div class="toggle-knob"></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="modal-submit" id="modal-submit" onclick="submitWaitlist()">
+        join the waitlist →
+      </button>
+
+      <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:12px">
+        No spam. No pressure. Unsubscribe any time.
+      </p>
+    </div>
+
+    <div class="modal-success" id="modal-success">
+      <div class="modal-success-icon">✦</div>
+      <div class="modal-success-title">You're on the list.</div>
+      <div class="modal-success-sub">Something good is coming.<br>We'll be in touch when the alpha opens.</div>
+    </div>
+  </div>
+</div>
+
+<!--
+GOOGLE APPS SCRIPT — paste into your Sheet's Apps Script editor
+(Extensions → Apps Script), then deploy as Web App:
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      new Date(),
+      data.name,
+      data.email,
+      data.os,
+      data.age,
+      data.gender,
+      data.alpha
+    ]);
+    return ContentService
+      .createTextOutput(JSON.stringify({result:'success'}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({result:'error',error:err.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+After deploying, paste your Web App URL into the SHEET_URL variable below.
+-->
+
+<script>
+// ── REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL ──
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzVAYUTYBjzuu7dZspXFYULFLNK72rAMcd2G_VALUfLrHNZ0INRqaKJkZyDugFsME4_/exec';
+
+var alphaOn = false;
+
+function openWaitlist() {
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Pre-fill email if typed in hero/cta
+  var heroEmail = document.getElementById('hero-email');
+  var ctaEmail  = document.getElementById('cta-email');
+  var pre = (heroEmail && heroEmail.value) || (ctaEmail && ctaEmail.value) || '';
+  if (pre) document.getElementById('wl-email').value = pre;
+}
+
+function closeWaitlist() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeWaitlist();
+}
+
+function selectPill(groupId, btn) {
+  document.querySelectorAll('#' + groupId + ' .pill-opt').forEach(p => p.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function toggleAlpha() {
+  alphaOn = !alphaOn;
+  var sw = document.getElementById('alpha-switch');
+  sw.classList.toggle('on', alphaOn);
+}
+
+function submitWaitlist() {
+  var name   = document.getElementById('wl-name').value.trim();
+  var email  = document.getElementById('wl-email').value.trim();
+  var os     = (document.querySelector('#wl-os .selected') || {}).textContent || '';
+  var age    = (document.querySelector('#wl-age .selected') || {}).textContent || '';
+  var gender = (document.querySelector('#wl-gender .selected') || {}).textContent || '';
+
+  if (!email || !email.includes('@')) {
+    var ei = document.getElementById('wl-email');
+    ei.style.boxShadow = 'inset 2px 2px 5px #d8d4cf, inset -2px -2px 5px #fff, 0 0 0 2px rgba(232,107,114,0.35)';
+    setTimeout(() => ei.style.boxShadow = '', 1800);
+    return;
+  }
+
+  var btn = document.getElementById('modal-submit');
+  btn.disabled = true;
+  btn.textContent = 'saving...';
+
+  var payload = { name: name, email: email, os: os, age: age, gender: gender, alpha: alphaOn ? 'yes' : 'no' };
+
+  if (SHEET_URL) {
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  } else {
+    console.log('Waitlist submission (no sheet connected yet):', payload);
+  }
+
+  // Show success regardless — no-cors means we can't read the response
+  setTimeout(() => {
+    document.getElementById('modal-body').classList.add('hidden');
+    document.getElementById('modal-success').style.display = 'block';
+  }, 600);
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWaitlist(); });
+</script>
+
+</body>
+</html>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjRkFGNUYwIi8+CiAgPHRleHQgeD0iMTYiIHk9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNDAwIiBmaWxsPSIjQjhBNUQ0Ij50PC90ZXh0Pgo8L3N2Zz4=">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thoughtful — Learn to communicate. Learn who you are.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -697,6 +698,221 @@ input[type=email]:focus {
   .modal-divider { margin: 0 -24px 20px; }
 }
 
+
+/* ── FEATURES SECTION ── */
+#features {
+  padding: 80px 40px 100px;
+}
+.features-inner { max-width: 1100px; margin: 0 auto; }
+.features-header { margin-bottom: 56px; }
+.features-header h2 { max-width: 520px; }
+.features-header p {
+  font-size: 15px; color: var(--muted);
+  margin-top: 14px; max-width: 460px; line-height: 1.7;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.feat-card {
+  background: var(--glass);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 32px;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.25s;
+}
+.feat-card:hover {
+  box-shadow: 6px 6px 16px #d8d4cf, -6px -6px 16px #fff;
+}
+.feat-card.wide { grid-column: 1 / -1; }
+.feat-card.accent { background: linear-gradient(135deg, rgba(184,165,212,0.12), rgba(184,165,212,0.04)); }
+
+.feat-eyebrow {
+  font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--accent-text);
+  margin-bottom: 10px;
+}
+.feat-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 300;
+  color: var(--text); line-height: 1.25;
+  margin-bottom: 10px;
+}
+.feat-title em { font-style: italic; color: var(--accent-deep); }
+.feat-body {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.65; max-width: 360px;
+}
+
+/* Constellation visual */
+.constellation-wrap {
+  margin-top: 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  justify-content: flex-start;
+}
+.const-char {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
+}
+.const-blob {
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+.feat-card:hover .const-blob { transform: translateY(-3px); }
+.const-label { font-size: 9px; color: var(--muted); letter-spacing: 0.04em; }
+
+/* Message Lab mini phone */
+.lab-wrap {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 40px;
+  align-items: center;
+}
+.lab-text { }
+.lab-phone-wrap {
+  position: relative;
+}
+.lab-phone {
+  width: 100%;
+  max-width: 280px;
+  height: 420px;
+  border-radius: 28px;
+  background: #F2EDE6;
+  border: 0.5px solid rgba(0,0,0,0.07);
+  box-shadow: 8px 8px 20px #d8d4cf, -8px -8px 20px #fff;
+  overflow: hidden;
+  position: relative;
+}
+.lab-scroll {
+  padding: 20px 16px 24px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.lab-blob {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(20px);
+}
+.lbl1 { top: -20px; left: -20px; width: 100px; height: 100px; background: #D8C8EE; opacity: 0.35; }
+.lbl2 { bottom: 40px; right: -20px; width: 80px; height: 80px; background: #B8E0D4; opacity: 0.28; }
+
+.lab-header { font-size: 13px; font-weight: 500; color: #3a3530; margin-bottom: 3px; }
+.lab-sub { font-size: 10px; color: #9a958e; margin-bottom: 14px; }
+
+.lab-msg-box {
+  background: #EEEBE5;
+  border-radius: 12px; padding: 10px 12px;
+  box-shadow: inset 2px 2px 4px #d4cfc8, inset -2px -2px 4px #fff;
+  margin-bottom: 10px; min-height: 52px;
+  font-size: 12px; color: #3a3530;
+  line-height: 1.55;
+}
+.lab-msg-placeholder { color: #b8b4ae; font-size: 12px; }
+.lab-cursor {
+  display: inline-block; width: 1.5px; height: 13px;
+  background: #B8A5D4; vertical-align: text-bottom;
+  margin-left: 1px; animation: labBlink 0.8s step-end infinite;
+}
+@keyframes labBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+.lab-ctx-row { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.lab-chip {
+  background: #F2EDE6; border-radius: 20px; padding: 5px 12px;
+  font-size: 10px; color: #9a958e;
+  box-shadow: 2px 2px 4px #d4cfc8, -2px -2px 4px #fff;
+  transition: all 0.2s;
+}
+.lab-chip.on {
+  box-shadow: inset 2px 2px 4px #d4cfc8, inset -2px -2px 4px #fff;
+  color: #7F6DB8; font-weight: 500;
+}
+
+.lab-meters { margin-bottom: 8px; }
+.lab-meter-row {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+}
+.lab-meter-label { font-size: 10px; color: #7a756e; width: 58px; text-align: right; flex-shrink: 0; }
+.lab-meter-track {
+  flex: 1; height: 6px; border-radius: 3px;
+  background: #EEEBE5;
+  box-shadow: inset 1px 1px 3px #d4cfc8, inset -1px -1px 3px #fff;
+  overflow: hidden;
+}
+.lab-meter-fill { height: 100%; border-radius: 3px; width: 0%; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+.lm-warmth { background: linear-gradient(90deg, #E0C8A8, #D4A878); }
+.lm-direct { background: linear-gradient(90deg, #C4B5DE, #9B88C4); }
+.lm-open   { background: linear-gradient(90deg, #A8D4C4, #6AAF98); }
+.lab-meter-val { font-size: 10px; color: #9a958e; width: 16px; text-align: center; flex-shrink: 0; }
+
+.lab-tags-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.lab-tag {
+  display: flex; align-items: center; gap: 4px;
+  border-radius: 16px; padding: 4px 10px; font-size: 10px;
+  opacity: 0; transform: scale(0.9);
+  transition: all 0.35s;
+}
+.lab-tag.show { opacity: 1; transform: scale(1); }
+.lab-tag.act { background: #F2EDE6; color: #5a5650; font-weight: 500; box-shadow: 1px 1px 3px #d4cfc8, -1px -1px 3px #fff; }
+.lab-tag.dim { background: #EEEBE5; color: #c4c0ba; }
+.lab-tdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.td-dash { background: #F0A050; } .td-peek { background: #B8A5D4; }
+.td-flare { background: #E88090; } .td-still { background: #5AAFA0; }
+.td-scout { background: #E8C840; } .td-swell { background: #80C8A8; }
+
+.lab-reflection {
+  font-size: 11px; color: #5a5650; line-height: 1.6;
+  font-style: italic; margin-top: 8px;
+  opacity: 0; transition: opacity 0.6s;
+}
+.lab-reflection.show { opacity: 1; }
+
+/* Path cards */
+.paths-visual {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.path-row {
+  background: var(--btn-bg);
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 3px 3px 7px #d8d4cf, -3px -3px 7px #fff;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.path-row.show { opacity: 1; transform: translateX(0); }
+.path-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.path-text { flex: 1; }
+.path-name { font-size: 13px; font-weight: 400; color: var(--text); }
+.path-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.path-badge {
+  font-size: 10px; padding: 3px 10px; border-radius: 20px;
+  background: #EDE7F4; color: var(--accent-text);
+}
+
+@media (max-width: 860px) {
+  #features { padding: 60px 24px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .feat-card.wide { grid-column: 1; }
+  .lab-wrap { grid-template-columns: 1fr; gap: 28px; }
+  .lab-phone-wrap { max-width: 280px; margin: 0 auto; }
+}
+
 </style>
 </head>
 <body>
@@ -852,6 +1068,117 @@ input[type=email]:focus {
     </div>
   </div>
 </section>
+
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-inner">
+    <div class="features-header reveal">
+      <div class="section-eye">what thoughtful does</div>
+      <h2>Everything it shows you<br><em>is already yours.</em></h2>
+      <p>No diagnoses. No scripts. Just a mirror — held up carefully, at the right moment, in the right light.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <!-- CONSTELLATION -->
+      <div class="feat-card accent reveal" style="transition-delay:0.05s" id="feat-const">
+        <div class="feat-eyebrow">your constellation</div>
+        <div class="feat-title">Six dimensions.<br><em>One portrait.</em></div>
+        <div class="feat-body">A 4-minute quiz maps how you naturally connect — which capacities are bright, which are dimmer, which are ready to grow. No type. No box. Just your specific shape.</div>
+        <div class="constellation-wrap" id="constWrap">
+          <!-- chars rendered by JS -->
+        </div>
+      </div>
+
+      <!-- PATHS -->
+      <div class="feat-card reveal" style="transition-delay:0.1s" id="feat-paths">
+        <div class="feat-eyebrow">personalized paths</div>
+        <div class="feat-title">No right answers.<br><em>Only what you can grow from.</em></div>
+        <div class="feat-body">Your path is recommended based on your constellation and who you most want to connect with. The lessons meet you exactly where you are.</div>
+        <div class="paths-visual" id="pathsVisual">
+          <div class="path-row" id="pr1">
+            <div class="path-dot" style="background:#B8A5D4"></div>
+            <div class="path-text">
+              <div class="path-name">learning to open up</div>
+              <div class="path-sub">Peek path · 3 levels</div>
+            </div>
+            <div class="path-badge">your path</div>
+          </div>
+          <div class="path-row" id="pr2">
+            <div class="path-dot" style="background:#E8C088"></div>
+            <div class="path-text">
+              <div class="path-name">learning to initiate</div>
+              <div class="path-sub">Dash path · 3 levels</div>
+            </div>
+          </div>
+          <div class="path-row" id="pr3">
+            <div class="path-dot" style="background:#5AAFA0"></div>
+            <div class="path-text">
+              <div class="path-name">learning to stay present</div>
+              <div class="path-sub">Still path · 3 levels</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGE LAB — wide card -->
+      <div class="feat-card wide reveal" style="transition-delay:0.15s">
+        <div class="lab-wrap">
+          <div class="lab-text">
+            <div class="feat-eyebrow">AI message lab</div>
+            <div class="feat-title">Paste a real message.<br><em>See what it's actually saying.</em></div>
+            <div class="feat-body" style="margin-bottom:20px">Most of what we mean never makes it into the words we send. Message Lab reads your actual draft — the warmth, the distance, the thing you circled but didn't say — and reflects it back. Then it shows you what it might look like to say it more fully.</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--accent)"></div>
+              Available in premium
+            </div>
+          </div>
+          <div class="lab-phone-wrap">
+            <div class="lab-phone" id="labPhone">
+              <div class="lab-blob lbl1"></div>
+              <div class="lab-blob lbl2"></div>
+              <div class="lab-scroll" id="labScroll">
+                <div class="lab-header">message lab</div>
+                <div class="lab-sub">paste a real message. see what it's actually saying.</div>
+                <div class="lab-msg-box" id="labMsgBox">
+                  <span id="labMsgText"></span><span class="lab-cursor" id="labCursor" style="display:none"></span>
+                </div>
+                <div class="lab-ctx-row" id="labCtxRow">
+                  <div class="lab-chip" id="lc-partner">partner</div>
+                  <div class="lab-chip" id="lc-friend">close friend</div>
+                  <div class="lab-chip" id="lc-family">family</div>
+                  <div class="lab-chip" id="lc-work">colleague</div>
+                </div>
+                <div class="lab-meters" id="labMeters" style="display:none">
+                  <div class="lab-meter-row">
+                    <div class="lab-meter-label">warmth</div>
+                    <div class="lab-meter-track"><div class="lab-meter-fill lm-warmth" id="lmf-w"></div></div>
+                    <div class="lab-meter-val" id="lmv-w">0</div>
+                  </div>
+                  <div class="lab-meter-row">
+                    <div class="lab-meter-label">directness</div>
+                    <div class="lab-meter-track"><div class="lab-meter-fill lm-direct" id="lmf-d"></div></div>
+                    <div class="lab-meter-val" id="lmv-d">0</div>
+                  </div>
+                  <div class="lab-meter-row">
+                    <div class="lab-meter-label">openness</div>
+                    <div class="lab-meter-track"><div class="lab-meter-fill lm-open" id="lmf-o"></div></div>
+                    <div class="lab-meter-val" id="lmv-o">0</div>
+                  </div>
+                  <div class="lab-tags-row" id="labTags"></div>
+                  <div class="lab-reflection" id="labReflection">There's warmth here — but the real thing you want to say is buried under three layers of padding.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- WHO IT'S FOR -->
 <section id="who">
@@ -1088,6 +1415,179 @@ function dGoTo(n, btn) {
 
   
 </div>
+
+
+<script>
+// ── CONSTELLATION VISUAL ──
+(function(){
+  var chars = [
+    { name:'Peek',  color:'#B8A5D4', size:56, brightness:1.0  },
+    { name:'Dash',  color:'#E8B860', size:40, brightness:0.55 },
+    { name:'Flare', color:'#E88090', size:32, brightness:0.4  },
+    { name:'Still', color:'#5AAFA0', size:48, brightness:0.8  },
+    { name:'Scout', color:'#E8C840', size:28, brightness:0.35 },
+    { name:'Swell', color:'#80C8A8', size:36, brightness:0.5  },
+  ];
+  var wrap = document.getElementById('constWrap');
+  if (!wrap) return;
+  chars.forEach(function(c) {
+    var div = document.createElement('div');
+    div.className = 'const-char';
+    var blob = document.createElement('div');
+    blob.className = 'const-blob';
+    blob.style.cssText = 'width:'+c.size+'px;height:'+c.size+'px;background:'+c.color+';opacity:'+c.brightness+';';
+    var label = document.createElement('div');
+    label.className = 'const-label';
+    label.textContent = c.name.toLowerCase();
+    div.appendChild(blob);
+    div.appendChild(label);
+    wrap.appendChild(div);
+  });
+})();
+
+// ── PATHS ANIMATION ──
+(function(){
+  var rows = ['pr1','pr2','pr3'];
+  var triggered = false;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !triggered) {
+        triggered = true;
+        rows.forEach(function(id, i) {
+          setTimeout(function() {
+            var el = document.getElementById(id);
+            if (el) el.classList.add('show');
+          }, i * 180);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  var feat = document.getElementById('feat-paths');
+  if (feat) obs.observe(feat);
+})();
+
+// ── MESSAGE LAB MINI DEMO ──
+(function(){
+  var msg = "Hey, sorry I've been quiet. Work's been crazy. We should hang out soon though!";
+  var results = { w:6, d:3, o:2, active:['dash','swell'] };
+  var dims = ['dash','peek','flare','still','scout','swell'];
+  var colors = { dash:'#F0A050',peek:'#B8A5D4',flare:'#E88090',still:'#5AAFA0',scout:'#E8C840',swell:'#80C8A8' };
+
+  function wait(ms) { return new Promise(function(r){ setTimeout(r,ms); }); }
+
+  async function animateMeter(id, fillId, valId, value) {
+    var fill = document.getElementById(fillId);
+    var val  = document.getElementById(valId);
+    if (!fill || !val) return;
+    fill.style.width = (value * 10) + '%';
+    var cur = 0;
+    var iv = setInterval(function(){
+      cur++;
+      val.textContent = cur;
+      if (cur >= value) clearInterval(iv);
+    }, 90);
+  }
+
+  async function runLabDemo() {
+    var textEl    = document.getElementById('labMsgText');
+    var cursorEl  = document.getElementById('labCursor');
+    var metersEl  = document.getElementById('labMeters');
+    var tagsEl    = document.getElementById('labTags');
+    var reflEl    = document.getElementById('labReflection');
+    if (!textEl) return;
+
+    // Reset
+    textEl.textContent = '';
+    if (metersEl) metersEl.style.display = 'none';
+    if (tagsEl) tagsEl.innerHTML = '';
+    if (reflEl) reflEl.classList.remove('show');
+    ['lmf-w','lmf-d','lmf-o'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.style.width = '0%';
+    });
+    ['lmv-w','lmv-d','lmv-o'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.textContent = '0';
+    });
+    document.querySelectorAll('.lab-chip').forEach(function(c){ c.classList.remove('on'); });
+
+    await wait(1000);
+
+    // Type message
+    if (cursorEl) cursorEl.style.display = 'inline-block';
+    for (var i = 0; i < msg.length; i++) {
+      textEl.textContent += msg[i];
+      var delay = 28;
+      if (msg[i] === '.' || msg[i] === '!') delay = 110;
+      else if (msg[i] === ',') delay = 65;
+      else if (msg[i] === ' ') delay = 16;
+      else delay = 28 + Math.random() * 16;
+      await wait(delay);
+    }
+
+    await wait(500);
+    if (cursorEl) cursorEl.style.display = 'none';
+
+    // Select context
+    var chip = document.getElementById('lc-partner');
+    if (chip) chip.classList.add('on');
+
+    await wait(800);
+
+    // Show meters
+    if (metersEl) metersEl.style.display = 'block';
+    await wait(300);
+    animateMeter('w','lmf-w','lmv-w', results.w);
+    await wait(200);
+    animateMeter('d','lmf-d','lmv-d', results.d);
+    await wait(200);
+    animateMeter('o','lmf-o','lmv-o', results.o);
+
+    await wait(1400);
+
+    // Dimension tags
+    if (tagsEl) {
+      tagsEl.innerHTML = '';
+      dims.forEach(function(d) {
+        var isActive = results.active.indexOf(d) !== -1;
+        var tag = document.createElement('div');
+        tag.className = 'lab-tag ' + (isActive ? 'act' : 'dim');
+        tag.innerHTML = '<div class="lab-tdot td-'+d+'"></div><span>'+d+'</span>';
+        tagsEl.appendChild(tag);
+      });
+      var tags = tagsEl.querySelectorAll('.lab-tag');
+      tags.forEach(function(t, i) {
+        setTimeout(function(){ t.classList.add('show'); }, i * 100);
+      });
+    }
+
+    await wait(1600);
+
+    // Reflection
+    if (reflEl) reflEl.classList.add('show');
+
+    await wait(4000);
+
+    // Loop
+    runLabDemo();
+  }
+
+  // Start when card is visible
+  var triggered = false;
+  var labObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !triggered) {
+        triggered = true;
+        runLabDemo();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  var phone = document.getElementById('labPhone');
+  if (phone) labObs.observe(phone);
+})();
+</script>
+
 
 <!-- WAITLIST MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">

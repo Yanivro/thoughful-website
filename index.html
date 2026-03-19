@@ -742,6 +742,43 @@ input[type=email]:focus {
 }
 .modal-success-sub { font-size: 14px; color: var(--muted); line-height: 1.6; }
 .modal-body.hidden { display: none; }
+
+/* Consent checkbox */
+.consent-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--btn-bg);
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
+}
+.consent-check:hover { box-shadow: inset 1px 1px 3px rgba(0,0,0,0.06), 0 0 0 2px rgba(184,165,212,0.12); }
+.consent-check.error { box-shadow: inset 1px 1px 3px rgba(0,0,0,0.04), 0 0 0 2px rgba(232,107,114,0.35); }
+.consent-box {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  transition: all 0.15s;
+}
+.consent-box.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.consent-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
 @media (max-width: 480px) {
   .modal { padding: 28px 24px; border-radius: 24px; }
   .modal-divider { margin: 0 -24px 20px; }
@@ -1704,12 +1741,21 @@ function dGoTo(n, btn) {
         </div>
       </div>
 
+      <div class="field-group" style="margin-top:20px">
+        <label class="consent-check" id="consent-label" onclick="toggleConsent()">
+          <div class="consent-box" id="consent-box">
+            <svg class="consent-tick" id="consent-tick" width="12" height="12" viewBox="0 0 12 12" style="display:none"><path d="M2 6 L5 9 L10 3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="consent-text">I agree to receive email updates about Mirrah (launch news, early access invites). You can unsubscribe at any time.</span>
+        </label>
+      </div>
+
       <button class="modal-submit" id="modal-submit" onclick="submitWaitlist()">
         join the waitlist →
       </button>
 
       <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:12px">
-        No spam. No pressure. Unsubscribe any time.
+        We respect your privacy. Your data is used only for waitlist communication and will never be shared with third parties.
       </p>
     </div>
 
@@ -1736,7 +1782,9 @@ function doPost(e) {
       data.os,
       data.age,
       data.gender,
-      data.alpha
+      data.alpha,
+      data.email_consent,
+      data.consent_date
     ]);
     return ContentService
       .createTextOutput(JSON.stringify({result:'success'}))
@@ -1756,6 +1804,7 @@ After deploying, paste your Web App URL into the SHEET_URL variable below.
 var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzVAYUTYBjzuu7dZspXFYULFLNK72rAMcd2G_VALUfLrHNZ0INRqaKJkZyDugFsME4_/exec';
 
 var alphaOn = false;
+var consentOn = false;
 
 function openWaitlist() {
   document.getElementById('modal-overlay').classList.add('open');
@@ -1787,6 +1836,16 @@ function toggleAlpha() {
   sw.classList.toggle('on', alphaOn);
 }
 
+function toggleConsent() {
+  consentOn = !consentOn;
+  var box = document.getElementById('consent-box');
+  var tick = document.getElementById('consent-tick');
+  var label = document.getElementById('consent-label');
+  box.classList.toggle('checked', consentOn);
+  tick.style.display = consentOn ? 'block' : 'none';
+  label.classList.remove('error');
+}
+
 function submitWaitlist() {
   var name   = document.getElementById('wl-name').value.trim();
   var email  = document.getElementById('wl-email').value.trim();
@@ -1801,11 +1860,18 @@ function submitWaitlist() {
     return;
   }
 
+  if (!consentOn) {
+    var cl = document.getElementById('consent-label');
+    cl.classList.add('error');
+    setTimeout(() => cl.classList.remove('error'), 1800);
+    return;
+  }
+
   var btn = document.getElementById('modal-submit');
   btn.disabled = true;
   btn.textContent = 'saving...';
 
-  var payload = { name: name, email: email, os: os, age: age, gender: gender, alpha: alphaOn ? 'yes' : 'no' };
+  var payload = { name: name, email: email, os: os, age: age, gender: gender, alpha: alphaOn ? 'yes' : 'no', email_consent: consentOn ? 'yes' : 'no', consent_date: new Date().toISOString() };
 
   if (SHEET_URL) {
     fetch(SHEET_URL, {

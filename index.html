@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjRkFGNUYwIi8+CiAgPHRleHQgeD0iMTYiIHk9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNDAwIiBmaWxsPSIjQjhBNUQ0Ij50PC90ZXh0Pgo8L3N2Zz4=">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8ZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0iZmMiPgogICAgICA8cGF0aCBkPSJNOCwzMCBMOCwxNCBROCwyIDE0LjUsMiBMMTQuNSwzMCBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0xNy41LDMwIEwxNy41LDIgUTI0LDIgMjQsMTQgTDI0LDMwIFoiLz4KICAgIDwvY2xpcFBhdGg+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDMwIEw4LDE0IFE4LDIgMTQuNSwyIEwxNC41LDMwIFoiIGZpbGw9IiNhOTliYzQiIGZpbGwtb3BhY2l0eT0iMC44MiIvPgogIDxwYXRoIGQ9Ik0xNy41LDMwIEwxNy41LDIgUTI0LDIgMjQsMTQgTDI0LDMwIFoiIGZpbGw9IiNjOGJkZDgiIGZpbGwtb3BhY2l0eT0iMC43NSIvPgogIDxnIGNsaXAtcGF0aD0idXJsKCNmYykiPgogICAgPHJlY3QgeD0iMTAiIHk9Ii00IiB3aWR0aD0iMi41IiBoZWlnaHQ9IjQyIiB0cmFuc2Zvcm09InJvdGF0ZSgyNSwxNiwxNikiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuMyIvPgogICAgPHJlY3QgeD0iMTMuNSIgeT0iLTQiIHdpZHRoPSIxLjIiIGhlaWdodD0iNDIiIHRyYW5zZm9ybT0icm90YXRlKDI1LDE2LDE2KSIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPgogIDwvZz4KPC9zdmc+">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thoughtful — Learn to communicate. Learn who you are.</title>
+<title>Mirrah — Learn to communicate. Learn who you are.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 
@@ -74,7 +74,7 @@ nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 18px 40px;
+  padding: 14px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,12 +84,21 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  color: var(--text);
   text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+}
+.nav-logo canvas {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+/* Gleam animation — used on hero arch */
+@keyframes gleamSweep {
+  0%,100% { transform: translateX(-200%) rotate(25deg); opacity:0; }
+  5% { opacity:1; }
+  35% { opacity:1; }
+  45% { transform: translateX(200%) rotate(25deg); opacity:0; }
 }
 
 .nav-tagline {
@@ -139,7 +148,7 @@ nav {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 40px 80px;
+  padding: 140px 40px 80px;
 }
 
 .hero-inner {
@@ -164,9 +173,10 @@ nav {
 }
 .hero-eyebrow::before {
   content: '';
-  width: 20px; height: 1px;
-  background: var(--accent);
+  width: 12px; height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'%3E%3Cpath d='M0,36 L0,12 Q0,0 10.5,0 L10.5,36 Z' fill='%23a99bc4' fill-opacity='0.78'/%3E%3Cpath d='M13.5,36 L13.5,0 Q24,0 24,12 L24,36 Z' fill='%23c8bdd8' fill-opacity='0.72'/%3E%3C/svg%3E") no-repeat center/contain;
   display: block;
+  flex-shrink: 0;
 }
 .hero-pill::before {
   content: '';
@@ -389,7 +399,13 @@ input[type=email]:focus {
   color:var(--muted);margin-bottom:20px;
   display:flex;align-items:center;gap:8px;
 }
-.section-eye::before { content:'';width:16px;height:1px;background:var(--muted);display:block; }
+.section-eye::before {
+  content: '';
+  width: 10px; height: 15px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'%3E%3Cpath d='M0,36 L0,12 Q0,0 10.5,0 L10.5,36 Z' fill='%23a99bc4' fill-opacity='0.6'/%3E%3Cpath d='M13.5,36 L13.5,0 Q24,0 24,12 L24,36 Z' fill='%23c8bdd8' fill-opacity='0.5'/%3E%3C/svg%3E") no-repeat center/contain;
+  display: block;
+  flex-shrink: 0;
+}
 
 /* ── WHO SECTION ── */
 .chars-inner { max-width:1100px;margin:0 auto; }
@@ -486,7 +502,7 @@ input[type=email]:focus {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-  #hero { padding: 100px 24px 60px; }
+  #hero { padding: 120px 24px 60px; }
   .hero-inner { grid-template-columns: 1fr; gap: 40px; }
   .phone-demo { order: -1; max-width: 300px; margin: 0 auto; }
   .who-inner { grid-template-columns: 1fr; gap: 36px; }
@@ -500,7 +516,7 @@ input[type=email]:focus {
 
 @media (max-width: 480px) {
   nav { padding: 14px 20px; }
-  .nav-logo { font-size: 18px; }
+  .nav-logo canvas { height: 26px; }
   h1 { font-size: 36px; }
   h2 { font-size: 28px; }
   .hero-sub { font-size: 15px; }
@@ -962,7 +978,7 @@ input[type=email]:focus {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">thoughtful</a>
+  <a href="#" class="nav-logo"><canvas id="navWordmark" width="240" height="72"></canvas></a>
   <a href="#cta" class="nav-btn">join the waitlist</a>
 </nav>
 
@@ -977,7 +993,7 @@ input[type=email]:focus {
         <em>Learn who you are.</em>
       </h1>
       <p class="hero-sub">
-        Most people spend years trying to communicate better. Thoughtful shows you something different — that how you communicate is a mirror. And what it reflects back can change everything.
+        Most people spend years trying to communicate better. Mirrah shows you something different — that how you communicate is a mirror. And what it reflects back can change everything.
       </p>
       <div class="hero-form">
         <input type="email" id="hero-email" placeholder="your email">
@@ -1110,7 +1126,7 @@ input[type=email]:focus {
 <section id="features">
   <div class="features-inner">
     <div class="features-header reveal">
-      <div class="section-eye">what thoughtful does</div>
+      <div class="section-eye">what mirrah does</div>
       <h2>Everything it shows you<br><em>is already yours.</em></h2>
       <p>No diagnoses. No scripts. Just a mirror — held up carefully, at the right moment, in the right light.</p>
     </div>
@@ -1234,7 +1250,7 @@ input[type=email]:focus {
       </div>
       <div class="who-card">
         <div class="who-card-title">Advice doesn't change patterns. Seeing them does.</div>
-        <div class="who-card-body">Thoughtful puts you inside real conversations and holds up the mirror. Not to judge what you see — to help you recognise it. Recognition is where change starts.</div>
+        <div class="who-card-body">Mirrah puts you inside real conversations and holds up the mirror. Not to judge what you see — to help you recognise it. Recognition is where change starts.</div>
       </div>
       <div class="who-card">
         <div class="who-card-title">You're ready to look.</div>
@@ -1399,8 +1415,9 @@ input[type=email]:focus {
 <!-- CTA -->
 <section id="cta">
   <div class="cta-card reveal">
+    <svg width="32" height="48" viewBox="0 0 24 36" style="display:block;margin:0 auto 20px;"><defs><clipPath id="ctaAC"><path d="M0,36 L0,12 Q0,0 10.5,0 L10.5,36 Z"/><path d="M13.5,36 L13.5,0 Q24,0 24,12 L24,36 Z"/></clipPath></defs><path d="M0,36 L0,12 Q0,0 10.5,0 L10.5,36 Z" fill="#a99bc4" fill-opacity="0.78"/><path d="M13.5,36 L13.5,0 Q24,0 24,12 L24,36 Z" fill="#c8bdd8" fill-opacity="0.72"/><g clip-path="url(#ctaAC)"><rect x="5" y="-4" width="3" height="48" transform="rotate(25,12,18)" fill="white" fill-opacity="0.3"/><rect x="9" y="-4" width="1.5" height="48" transform="rotate(25,12,18)" fill="white" fill-opacity="0.15"/></g></svg>
     <h2>Ready to see<br><em>what the mirror shows?</em></h2>
-    <p class="cta-sub">Thoughtful is in early testing. Join the waitlist and be among the first to look — free for early users.</p>
+    <p class="cta-sub">Mirrah is in early testing. Join the waitlist and be among the first to look — free for early users.</p>
     <div class="cta-form">
       <input type="email" id="cta-email" placeholder="your email address">
       <button class="hero-cta" onclick="openWaitlist()">join the waitlist</button>
@@ -1411,8 +1428,8 @@ input[type=email]:focus {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">thoughtful</div>
-  <div class="footer-note">© 2026 Thoughtful. All rights reserved.</div>
+  <div class="footer-logo" style="font-family:'Quicksand',sans-serif;letter-spacing:0.04em;color:var(--accent-text);display:flex;align-items:center;gap:8px;"><svg width="14" height="20" viewBox="0 0 24 36"><path d="M0,36 L0,12 Q0,0 10.5,0 L10.5,36 Z" fill="#a99bc4" fill-opacity="0.6"/><path d="M13.5,36 L13.5,0 Q24,0 24,12 L24,36 Z" fill="#c8bdd8" fill-opacity="0.5"/></svg>mirrah</div>
+  <div class="footer-note">© 2026 Mirrah. All rights reserved.</div>
 </footer>
 
 
@@ -1631,7 +1648,7 @@ function dGoTo(n, btn) {
     <button class="modal-close" onclick="closeWaitlist()">&#x2715;</button>
 
     <div class="modal-body" id="modal-body">
-      <div class="modal-logo">thoughtful</div>
+      <div class="modal-logo" style="font-family:'Quicksand',sans-serif;letter-spacing:0.04em;color:var(--accent-text);">mirrah</div>
       <div class="modal-title">Join the<br><em>waitlist.</em></div>
       <div class="modal-sub">Be first to access the alpha — free for early users. Takes 60 seconds.</div>
       <div class="modal-divider"></div>
@@ -1697,7 +1714,7 @@ function dGoTo(n, btn) {
     </div>
 
     <div class="modal-success" id="modal-success">
-      <div class="modal-success-icon">✦</div>
+      <div class="modal-success-icon"><svg width="40" height="56" viewBox="0 0 24 36"><path d="M0,36 L0,12 Q0,0 10.5,0 L10.5,36 Z" fill="#a99bc4" fill-opacity="0.78"/><path d="M13.5,36 L13.5,0 Q24,0 24,12 L24,36 Z" fill="#c8bdd8" fill-opacity="0.72"/></svg></div>
       <div class="modal-success-title">You're on the list.</div>
       <div class="modal-success-sub">Something good is coming.<br>We'll be in touch when the alpha opens.</div>
     </div>
@@ -1810,6 +1827,217 @@ function submitWaitlist() {
 
 // Close on Escape
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWaitlist(); });
+
+// ── NAV WORDMARK RENDERER ──
+(function(){
+  async function renderNavWordmark() {
+    await document.fonts.ready;
+    await new Promise(r => setTimeout(r, 300));
+
+    var c = document.getElementById('navWordmark');
+    if (!c) return;
+    var dpr = window.devicePixelRatio || 1;
+    var size = 28;
+    var ctx = c.getContext('2d');
+
+    ctx.font = '400 ' + size + 'px Quicksand, sans-serif';
+    ctx.textBaseline = 'alphabetic';
+
+    var mW = ctx.measureText('m').width;
+    var iW = ctx.measureText('i').width;
+    var rW = ctx.measureText('r').width;
+    var aW = ctx.measureText('a').width;
+    var hW = ctx.measureText('h').width;
+    var xH = size * 0.72;
+    var gap = size * 0.12;
+    var archWidth = rW * 2 + size * 0.35 + gap;
+    var archExA = size * 0.7;
+    var archExB = size * 0.14;
+    var lg = 2;
+
+    var totalW = mW + lg + iW + lg*0.3 + archWidth + lg*0.3 + aW + lg + hW;
+    var totalH = xH + archExA + archExB + 4;
+
+    c.width = Math.ceil(totalW + 8) * dpr;
+    c.height = Math.ceil(totalH + 4) * dpr;
+    c.style.width = Math.ceil(totalW + 8) + 'px';
+    c.style.height = Math.ceil(totalH + 4) + 'px';
+    ctx.scale(dpr, dpr);
+
+    var bl = archExA + xH + 2;
+    var aBot = bl + archExB;
+    var aTop = bl - xH - archExA;
+    var halfW = (archWidth - gap) / 2;
+
+    var x = 4;
+    ctx.font = '400 ' + size + 'px Quicksand, sans-serif';
+    ctx.textBaseline = 'alphabetic';
+    ctx.globalAlpha = 1; ctx.fillStyle = '#5B4A86';
+    ctx.fillText('m', x, bl); x += mW + lg;
+    ctx.fillText('i', x, bl); x += iW + lg*0.3;
+
+    var oL = x, oR = x + archWidth;
+    var aCX = x + archWidth/2;
+    var Li = aCX - gap/2, Ri = aCX + gap/2;
+
+    // Left half
+    ctx.beginPath();
+    ctx.moveTo(oL, aBot); ctx.lineTo(oL, aTop + halfW);
+    ctx.quadraticCurveTo(oL, aTop, Li, aTop);
+    ctx.lineTo(Li, aBot); ctx.closePath();
+    ctx.fillStyle = '#a99bc4'; ctx.globalAlpha = 0.78; ctx.fill();
+
+    // Right half
+    ctx.beginPath();
+    ctx.moveTo(oR, aBot); ctx.lineTo(oR, aTop + halfW);
+    ctx.quadraticCurveTo(oR, aTop, Ri, aTop);
+    ctx.lineTo(Ri, aBot); ctx.closePath();
+    ctx.fillStyle = '#c8bdd8'; ctx.globalAlpha = 0.72; ctx.fill();
+
+    // R's — same font, same baseline, clipped
+    var lhCX = (oL + Li) / 2;
+    var rhCX = (Ri + oR) / 2;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(oL, aBot); ctx.lineTo(oL, aTop + halfW);
+    ctx.quadraticCurveTo(oL, aTop, Li, aTop);
+    ctx.lineTo(Li, aBot); ctx.closePath(); ctx.clip();
+    ctx.font = '400 ' + size + 'px Quicksand, sans-serif';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = 'rgba(255,255,245,0.85)'; ctx.globalAlpha = 1;
+    ctx.fillText('r', lhCX - rW*0.5, bl);
+    ctx.restore();
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(oR, aBot); ctx.lineTo(oR, aTop + halfW);
+    ctx.quadraticCurveTo(oR, aTop, Ri, aTop);
+    ctx.lineTo(Ri, aBot); ctx.closePath(); ctx.clip();
+    ctx.fillStyle = 'rgba(255,255,245,0.85)'; ctx.globalAlpha = 1;
+    ctx.translate(rhCX, 0); ctx.scale(-1, 1); ctx.translate(-rhCX, 0);
+    ctx.font = '400 ' + size + 'px Quicksand, sans-serif';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText('r', rhCX - rW*0.5, bl);
+    ctx.restore();
+
+    // a, h
+    ctx.font = '400 ' + size + 'px Quicksand, sans-serif';
+    ctx.textBaseline = 'alphabetic';
+    x = oR + lg*0.3;
+    ctx.globalAlpha = 1; ctx.fillStyle = '#5B4A86';
+    ctx.fillText('a', x, bl); x += aW + lg;
+    ctx.fillText('h', x, bl);
+
+    // Animated gleam
+    var archBounds = {oL:oL,oR:oR,aTop:aTop,aBot:aBot,Li:Li,Ri:Ri,halfW:halfW,totalW:totalW+8,totalH:totalH+4,bl:bl,size:size,mW:mW,iW:iW,rW:rW,aW:aW,hW:hW,lg:lg,gap:gap,archWidth:archWidth};
+    animateGleam(c, archBounds, dpr);
+  }
+
+  function animateGleam(c, b, dpr) {
+    var startTime = null;
+    var duration = 5000;
+    var sweepDur = 0.4;
+    var delay = 0.3;
+
+    function frame(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ((ts - startTime) % duration) / duration;
+
+      // Redraw full wordmark then overlay gleam
+      var ctx = c.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, b.totalW, b.totalH);
+
+      // Redraw text and arch
+      var x = 4;
+      ctx.font = '400 ' + b.size + 'px Quicksand, sans-serif';
+      ctx.textBaseline = 'alphabetic';
+      ctx.globalAlpha = 1; ctx.fillStyle = '#5B4A86';
+      ctx.fillText('m', x, b.bl); x += b.mW + b.lg;
+      ctx.fillText('i', x, b.bl);
+
+      // Left half
+      ctx.beginPath();
+      ctx.moveTo(b.oL, b.aBot); ctx.lineTo(b.oL, b.aTop + b.halfW);
+      ctx.quadraticCurveTo(b.oL, b.aTop, b.Li, b.aTop);
+      ctx.lineTo(b.Li, b.aBot); ctx.closePath();
+      ctx.fillStyle = '#a99bc4'; ctx.globalAlpha = 0.78; ctx.fill();
+
+      // Right half
+      ctx.beginPath();
+      ctx.moveTo(b.oR, b.aBot); ctx.lineTo(b.oR, b.aTop + b.halfW);
+      ctx.quadraticCurveTo(b.oR, b.aTop, b.Ri, b.aTop);
+      ctx.lineTo(b.Ri, b.aBot); ctx.closePath();
+      ctx.fillStyle = '#c8bdd8'; ctx.globalAlpha = 0.72; ctx.fill();
+
+      // Gleam sweep (only during the sweep window)
+      if (elapsed > delay && elapsed < delay + sweepDur) {
+        var sweepProgress = (elapsed - delay) / sweepDur;
+        var sweepX = b.oL - 20 + (b.oR - b.oL + 40) * sweepProgress;
+        var barLen = (b.aBot - b.aTop + b.oR - b.oL) * 1.5;
+        var angle = 25 * Math.PI / 180;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(b.oL, b.aBot); ctx.lineTo(b.oL, b.aTop + b.halfW);
+        ctx.quadraticCurveTo(b.oL, b.aTop, b.Li, b.aTop); ctx.lineTo(b.Li, b.aBot); ctx.closePath();
+        ctx.moveTo(b.Ri, b.aBot); ctx.lineTo(b.Ri, b.aTop);
+        ctx.quadraticCurveTo(b.oR, b.aTop, b.oR, b.aTop + b.halfW); ctx.lineTo(b.oR, b.aBot); ctx.closePath();
+        ctx.clip();
+
+        var gy = b.aTop + (b.aBot - b.aTop) * 0.5;
+        ctx.save(); ctx.translate(sweepX, gy); ctx.rotate(angle);
+        ctx.fillStyle = 'rgba(255,255,255,0.38)'; ctx.globalAlpha = 1;
+        ctx.fillRect(-4, -barLen/2, 8, barLen); ctx.restore();
+        ctx.save(); ctx.translate(sweepX + 10, gy); ctx.rotate(angle);
+        ctx.fillStyle = 'rgba(255,255,255,0.2)'; ctx.globalAlpha = 1;
+        ctx.fillRect(-2, -barLen/2, 4, barLen); ctx.restore();
+        ctx.restore();
+      }
+
+      // R's (always on top of gleam)
+      var lhCX = (b.oL + b.Li) / 2;
+      var rhCX = (b.Ri + b.oR) / 2;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(b.oL, b.aBot); ctx.lineTo(b.oL, b.aTop + b.halfW);
+      ctx.quadraticCurveTo(b.oL, b.aTop, b.Li, b.aTop);
+      ctx.lineTo(b.Li, b.aBot); ctx.closePath(); ctx.clip();
+      ctx.font = '400 ' + b.size + 'px Quicksand, sans-serif';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = 'rgba(255,255,245,0.85)'; ctx.globalAlpha = 1;
+      ctx.fillText('r', lhCX - b.rW*0.5, b.bl);
+      ctx.restore();
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(b.oR, b.aBot); ctx.lineTo(b.oR, b.aTop + b.halfW);
+      ctx.quadraticCurveTo(b.oR, b.aTop, b.Ri, b.aTop);
+      ctx.lineTo(b.Ri, b.aBot); ctx.closePath(); ctx.clip();
+      ctx.fillStyle = 'rgba(255,255,245,0.85)'; ctx.globalAlpha = 1;
+      ctx.translate(rhCX, 0); ctx.scale(-1, 1); ctx.translate(-rhCX, 0);
+      ctx.font = '400 ' + b.size + 'px Quicksand, sans-serif';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillText('r', rhCX - b.rW*0.5, b.bl);
+      ctx.restore();
+
+      // a, h
+      ctx.font = '400 ' + b.size + 'px Quicksand, sans-serif';
+      ctx.textBaseline = 'alphabetic';
+      x = b.oR + b.lg*0.3;
+      ctx.globalAlpha = 1; ctx.fillStyle = '#5B4A86';
+      ctx.fillText('a', x, b.bl); x += b.aW + b.lg;
+      ctx.fillText('h', x, b.bl);
+
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  renderNavWordmark();
+})();
 </script>
 
 </body>

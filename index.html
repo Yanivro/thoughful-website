@@ -1927,7 +1927,7 @@ function submitWaitlist() {
   btn.disabled = true;
   btn.textContent = 'saving...';
 
-  var payload = { name: name, email: email, os: os, age: age, gender: gender, alpha: alphaOn ? 'yes' : 'no', email_consent: consentOn ? 'yes' : 'no', consent_date: new Date().toISOString() };
+  var payload = { name: name, email: email, os: os, age: age, gender: gender, alpha: alphaOn ? 'yes' : 'no', email_consent: consentOn ? 'yes' : 'no', consent_date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) };
 
   if (SHEET_URL) {
     fetch(SHEET_URL, {

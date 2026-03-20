@@ -1711,10 +1711,13 @@ function dGoTo(n, btn) {
       <div class="field-group">
         <label class="field-label">age</label>
         <div class="pill-group" id="wl-age">
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">Under 18</button>
           <button class="pill-opt" onclick="selectPill('wl-age', this)">18–24</button>
           <button class="pill-opt" onclick="selectPill('wl-age', this)">25–34</button>
           <button class="pill-opt" onclick="selectPill('wl-age', this)">35–44</button>
-          <button class="pill-opt" onclick="selectPill('wl-age', this)">45+</button>
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">45–54</button>
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">55–64</button>
+          <button class="pill-opt" onclick="selectPill('wl-age', this)">65+</button>
         </div>
       </div>
 
@@ -1723,9 +1726,10 @@ function dGoTo(n, btn) {
         <div class="pill-group" id="wl-gender">
           <button class="pill-opt" onclick="selectPill('wl-gender', this)">Male</button>
           <button class="pill-opt" onclick="selectPill('wl-gender', this)">Female</button>
-          <button class="pill-opt" onclick="selectPill('wl-gender', this)">Other</button>
+          <button class="pill-opt" onclick="selectGenderOther(this)">Other</button>
           <button class="pill-opt" onclick="selectPill('wl-gender', this)">Prefer not to say</button>
         </div>
+        <input type="text" id="wl-gender-other" class="field-input" placeholder="How do you identify?" style="display:none;margin-top:8px;">
       </div>
 
       <div class="field-group">
@@ -1828,6 +1832,19 @@ function handleOverlayClick(e) {
 function selectPill(groupId, btn) {
   document.querySelectorAll('#' + groupId + ' .pill-opt').forEach(p => p.classList.remove('selected'));
   btn.classList.add('selected');
+  if (groupId === 'wl-gender') {
+    var otherInput = document.getElementById('wl-gender-other');
+    otherInput.style.display = 'none';
+    otherInput.value = '';
+  }
+}
+
+function selectGenderOther(btn) {
+  document.querySelectorAll('#wl-gender .pill-opt').forEach(p => p.classList.remove('selected'));
+  btn.classList.add('selected');
+  var otherInput = document.getElementById('wl-gender-other');
+  otherInput.style.display = 'block';
+  otherInput.focus();
 }
 
 function toggleAlpha() {

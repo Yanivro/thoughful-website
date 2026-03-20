@@ -1868,7 +1868,8 @@ function submitWaitlist() {
   var email  = document.getElementById('wl-email').value.trim();
   var os     = (document.querySelector('#wl-os .selected') || {}).textContent || '';
   var age    = (document.querySelector('#wl-age .selected') || {}).textContent || '';
-  var gender = (document.querySelector('#wl-gender .selected') || {}).textContent || '';
+  var genderBtn = (document.querySelector('#wl-gender .selected') || {}).textContent || '';
+  var gender = genderBtn === 'Other' ? (document.getElementById('wl-gender-other').value.trim() || 'Other') : genderBtn;
 
   if (!email || !email.includes('@')) {
     var ei = document.getElementById('wl-email');
